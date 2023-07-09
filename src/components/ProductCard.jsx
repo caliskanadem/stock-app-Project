@@ -8,7 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { btnStyle, flex } from "../styles/GlobalStyle";
 import useStockCall from "../hooks/useStockCall";
 
-export default function FirmCard({ firm, setOpen, setInfo }) {
+export default function ProductCard({ firm, setOpen, setInfo }) {
   const { deleteStockData } = useStockCall();
   return (
     <Card

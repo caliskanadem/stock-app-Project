@@ -47,7 +47,20 @@ const useStockCall = () => {
     }
   };
 
-  return { getStockData, deleteStockData, postStockData };
+  const putStockData = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+      getStockData(url);
+      toastSuccessNotify(`${url} Successfully updated`);
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toastErrorNotify(`${url} Can not be updated`);
+    }
+  };
+
+  return { getStockData, deleteStockData, postStockData, putStockData };
 };
 
 export default useStockCall;

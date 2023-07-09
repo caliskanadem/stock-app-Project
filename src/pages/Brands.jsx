@@ -11,7 +11,6 @@ const Brands = () => {
   useEffect(() => {
     getStockData("brands");
   }, []);
-  console.log(brands);
 
   return (
     <div>

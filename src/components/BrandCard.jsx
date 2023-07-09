@@ -14,20 +14,22 @@ export default function BrandCard({ brand }) {
       sx={{
         p: 2,
         width: "300px",
-        height: "300px",
+        height: "400px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
       }}
     >
-      <CardMedia
-        sx={{ p: 1, objectFit: "contain", height: "130px" }}
-        image={brand?.image}
-        title="brand-image"
-      />
       <Typography gutterBottom variant="h5" component="div">
         {brand.name}
       </Typography>
+
+      <CardMedia
+        sx={{ p: 1, objectFit: "contain", height: "250px" }}
+        image={brand?.image}
+        title="brand-image"
+      />
+
       <CardActions sx={flex}>
         <EditIcon sx={btnStyle} />
         <DeleteOutlineIcon sx={btnStyle} />
