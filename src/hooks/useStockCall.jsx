@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStart, fetchFail, getSuccess } from "../features/stockSlice";
 import useAxios from "./useAxios";
@@ -7,7 +6,6 @@ import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 const useStockCall = () => {
   const dispatch = useDispatch();
   const { axiosWithToken } = useAxios();
-  const { token } = useSelector((state) => state.auth);
   const getStockData = async (url) => {
     // const BASE_URL = "http://12165.fullstack.clarusway.com/";
     dispatch(fetchStart());
