@@ -23,9 +23,9 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
     e.preventDefault();
     console.log(info);
     if (info.id) {
-      putStockData("products", info);
+      putStockData("brands", info);
     } else {
-      postStockData("products", info);
+      postStockData("brands", info);
     }
     handleClose();
     setInfo({ name: "", phone: "", address: "", image: "" });
@@ -56,26 +56,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               value={info?.name || ""}
               onChange={handleChange}
             />
-            <TextField
-              label="Phone"
-              name="phone"
-              id="phone"
-              type="tel"
-              variant="outlined"
-              required
-              value={info?.phone || ""}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Address"
-              name="address"
-              id="address"
-              type="text"
-              variant="outlined"
-              required
-              value={info?.address || ""}
-              onChange={handleChange}
-            />
+
             <TextField
               label="Image"
               name="image"

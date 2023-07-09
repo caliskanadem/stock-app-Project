@@ -7,8 +7,10 @@ import { CardActionArea, CardActions } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { btnStyle, flex } from "../styles/GlobalStyle";
+import useStockCall from "../hooks/useStockCall";
 
-export default function BrandCard({ brand }) {
+export default function BrandCard({ brand, setInfo, setOpen }) {
+  const { deleteStockData } = useStockCall();
   return (
     <Card
       sx={{
@@ -31,8 +33,19 @@ export default function BrandCard({ brand }) {
       />
 
       <CardActions sx={flex}>
-        <EditIcon sx={btnStyle} />
-        <DeleteOutlineIcon sx={btnStyle} />
+        <CardActions sx={flex}>
+          <EditIcon
+            sx={btnStyle}
+            onClick={() => {
+              setInfo(brand);
+              setOpen(true);
+            }}
+          />
+          <DeleteOutlineIcon
+            sx={btnStyle}
+            onClick={() => deleteStockData("brands", brand.id)}
+          />
+        </CardActions>
       </CardActions>
     </Card>
   );
