@@ -76,7 +76,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               value={info?.address || ""}
               onChange={handleChange}
             />
-            <TextField
+            {/* <TextField
               label="Stock"
               name="stock"
               id="stock"
@@ -85,7 +85,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               required
               value={info?.image || ""}
               onChange={handleChange}
-            />
+            /> */}
             <Button type="submit" variant="contained">
               SUBMIT FIRM
             </Button>
