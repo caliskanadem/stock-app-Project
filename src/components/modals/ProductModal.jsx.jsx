@@ -47,29 +47,29 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
             component="form"
           >
             <TextField
-              label="Firm Name"
-              name="name"
-              id="name"
+              label="Brand"
+              name="brand"
+              id="brand"
               type="text"
               variant="outlined"
               required
-              value={info?.name || ""}
+              value={info?.brand || ""}
               onChange={handleChange}
             />
             <TextField
-              label="Phone"
-              name="phone"
-              id="phone"
-              type="tel"
+              label="Category"
+              name="category"
+              id="category"
+              type="text"
               variant="outlined"
               required
-              value={info?.phone || ""}
+              value={info?.category || ""}
               onChange={handleChange}
             />
             <TextField
-              label="Address"
-              name="address"
-              id="address"
+              label="Name"
+              name="name"
+              id="name"
               type="text"
               variant="outlined"
               required
@@ -77,10 +77,10 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               onChange={handleChange}
             />
             <TextField
-              label="Image"
-              name="image"
-              id="image"
-              type="url"
+              label="Stock"
+              name="stock"
+              id="stock"
+              type="number"
               variant="outlined"
               required
               value={info?.image || ""}

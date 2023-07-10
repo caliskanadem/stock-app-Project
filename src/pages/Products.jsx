@@ -2,7 +2,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
-import { flex } from "../styles/GlobalStyle";
+import { btnStyle, flex } from "../styles/GlobalStyle";
 import ProductModal from "../components/modals/ProductModal.jsx";
 import ProductCard from "../components/ProductCard";
 import * as React from "react";
@@ -13,9 +13,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const Product = () => {
-  const { getStockData } = useStockCall();
+  const { getStockData, deleteStockData } = useStockCall();
   const { products } = useSelector((state) => state?.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({
@@ -70,7 +71,15 @@ const Product = () => {
                 <TableCell align="right">{pro.brand}</TableCell>
                 <TableCell align="right">{pro.name}</TableCell>
                 <TableCell align="right">{pro.stock}</TableCell>
-                <TableCell align="right">#</TableCell>
+                <TableCell align="right">
+                  <DeleteForeverIcon
+                    sx={btnStyle}
+                    onClick={() => {
+                      deleteStockData("products", pro.id);
+                      getStockData("products");
+                    }}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
