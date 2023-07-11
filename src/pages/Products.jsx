@@ -8,10 +8,10 @@ import { btnStyle } from "../styles/GlobalStyle";
 
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 
 const Product = () => {
-  const { getStockData, deleteStockData } = useStockCall();
+  const { getStockData, deleteStockData, getProCatBrand } = useStockCall();
   const { products } = useSelector((state) => state?.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({
@@ -86,7 +86,12 @@ const Product = () => {
   ];
 
   useEffect(() => {
-    getStockData("products");
+    // getStockData("products");
+    // getStockData("categories");
+    // getStockData("brands");
+
+    //& Promise All
+    getProCatBrand();
   }, []);
 
   return (
@@ -118,6 +123,7 @@ const Product = () => {
           }}
           pageSizeOptions={[5]}
           disableRowSelectionOnClick
+          slots={{ toolbar: GridToolbar }}
         />
       </Box>
     </div>

@@ -1,18 +1,20 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+
 import { modalStyle } from "../../styles/GlobalStyle";
 import { Button, TextField } from "@mui/material";
 import useStockCall from "../../hooks/useStockCall";
+import { useSelector } from "react-redux";
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
   const { postStockData, putStockData } = useStockCall();
-  // const [info, setInfo] = useState({
-  //   name: "",
-  //   phone: "",
-  //   address: "",
-  //   image: "",
-  // });
+  const { categories } = useSelector((state) => state.stock);
+  console.log(categories);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,15 +23,11 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(info);
-    if (info.id) {
-      putStockData("products", info);
-    } else {
-      postStockData("products", info);
-    }
+    postStockData("products", info);
     handleClose();
     setInfo({ name: "", phone: "", address: "", image: "" });
   };
+
   return (
     <div>
       <Modal
@@ -46,6 +44,23 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             component="form"
           >
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+              <Select
+                labelId="category"
+                id="category"
+                // value={age}
+                label="Category"
+                onChange={handleChange}
+              >
+                {categories?.map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
             <TextField
               label="Brand"
               name="brand"
