@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
 import { modalStyle } from "../../styles/GlobalStyle";
 import { Button, TextField } from "@mui/material";
@@ -12,9 +12,8 @@ import useStockCall from "../../hooks/useStockCall";
 import { useSelector } from "react-redux";
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
-  const { postStockData, putStockData } = useStockCall();
+  const { postStockData } = useStockCall();
   const { categories } = useSelector((state) => state.stock);
-  console.log(categories);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +24,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
     e.preventDefault();
     postStockData("products", info);
     handleClose();
-    setInfo({ name: "", phone: "", address: "", image: "" });
+    setInfo({ category_id: "", brand_id: "", name: "" });
   };
 
   return (
@@ -34,7 +33,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
         open={open}
         onClose={() => {
           handleClose();
-          setInfo({ name: "", phone: "", address: "", image: "" });
+          setInfo({ category_id: "", brand_id: "", name: "" });
         }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -49,7 +48,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               <Select
                 labelId="category"
                 id="category"
-                // value={age}
+                value={info?.category_id}
                 label="Category"
                 onChange={handleChange}
               >
